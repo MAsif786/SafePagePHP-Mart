@@ -1,4 +1,4 @@
-# PHPSecPage-Mart
+# SafePage in PHP by #Mart
 Home Made Security Page in PHP
 
 This PHP Script is a home made protection for single page applications. The project is a "work in progress".
