@@ -5,6 +5,8 @@ This PHP Script is a home made protection for single page applications. The proj
 
 The code that I propose is open to change . I hope that many will be helping to improve the code and make it safer .
 
+P.S. I'm sorry for my bad english. 
+
 <h2>First Control</h2>
 <strong>SSL Control</strong>
 
