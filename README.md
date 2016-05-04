@@ -41,7 +41,7 @@ $auth = 0;
 for($i=0; $i<$numIParray; $i++) { 
  if($IParray[$i] == $ipClient) { $auth = 1; }
 }
-if($auth == 1) { Ip found 
+if($auth == 1) { /* Ip found */ 
  } else { 
   /* You can save the ip in a black list and send a mail to administrator with IP information. */
 }
@@ -68,3 +68,43 @@ if($query && $query['status'] == 'success') {
 <h3>Third Control</h3>
 <strong>Token Control</strong>
 
+<p>We can use a custom random string generator to create a string that we will use then. This function is not mine but is very useful to the script.</p>
+
+```
+function generateRandomString($length = 32) {
+    $characters = '-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+  }
+```
+<p>The idea is to store the random string in our db and send it to our mail address. So...</p>
+
+```
+$generatedToken = generateRandomString();
+
+$message = wordwrap($generatedToken, 70, "\r\n");
+
+mail('my_email_address', 'New Generated Token', $message);
+```
+<p>At this point, if all steps are okay, the page show a form to send the token. 
+The next code compare the tokens (sent and stored). For security the token stored in db is not the token that must be sent. The final form of authorized token is: </p>
+
+```
+md5($stra . $storedToken . $strb);
+```
+<p>In this way the token stored in db not is enough to have access to our SPA. The administrator must add the right strings a and b before and after the token and encrypt the string in md5.</p>
+
+```
+$accessToken = /* Retrieve information from DB */;
+
+$stra = "something";
+$strb = "something";
+
+$encAccessToken = md5($stra . $accessToken . $strb);
+
+if($encAccessToken == $_GET['accessToken']) { /* Access Granted */  } else { /* Send ip to administrator email */ }
+```
