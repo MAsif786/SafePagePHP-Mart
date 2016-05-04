@@ -64,3 +64,7 @@ if($query && $query['status'] == 'success') {
 	}
 ```
 <p> You can use this service if you want save information about intruder's IP. </p>
+
+<h3>Third Control</h3>
+<strong>Token Control</strong>
+
