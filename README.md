@@ -28,7 +28,8 @@ else { header("location: my_ssl_address_site"); }
 <p>If you know the ip administrator accounts you can create a control to restrict access to the page.</p>
 
 ```
-$ipClient = getenv('HTTP_CLIENT_IP')?: getenv('HTTP_X_FORWARDED_FOR')?: getenv('HTTP_X_FORWARDED')?: getenv('HTTP_FORWARDED_FOR')?: getenv('HTTP_FORWARDED')?: getenv('REMOTE_ADDR'); if($ipClient == "admin_ip_address") { } 
+$ipClient = getenv('HTTP_CLIENT_IP')?: getenv('HTTP_X_FORWARDED_FOR')?: getenv('HTTP_X_FORWARDED')?: getenv('HTTP_FORWARDED_FOR')?: getenv('HTTP_FORWARDED')?: getenv('REMOTE_ADDR'); 
+if($ipClient == "admin_ip_address") { } 
 ```
 
 <p>If you have more administrators for the page you can create an Array with ip</p>
@@ -42,7 +43,24 @@ for($i=0; $i<$numIParray; $i++) {
 }
 if($auth == 1) { Ip found 
  } else { 
-  /* You can save the ip in a black list and send a mail to administrator. */
+  /* You can save the ip in a black list and send a mail to administrator with IP information. */
 }
 ```
-  
+<p> This code retrieve information about IP using Ip-API.com</p>
+
+```
+$query = @unserialize(file_get_contents('http://ip-api.com/php/'.$ipClient));
+if($query && $query['status'] == 'success') {
+	  
+	  if(isset($query['country']))  {
+	  $country =  $query['country']; } else { $country = "unknown"; }
+	  
+	  if(isset($query['city']))  {
+	  $city =  $query['city']; } else { $city = "unknown"; }
+	  
+	} else {
+	  $city = "Unknown";
+	  $country = "Unknown";
+	}
+```
+<p> You can use this service if you want save information about intruder's IP. </p>
