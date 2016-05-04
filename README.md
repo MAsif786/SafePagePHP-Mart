@@ -1,7 +1,7 @@
 # SafePage in PHP by #Mart
 Home Made Security Page in PHP
 
-This PHP Script is a home made protection for single page applications. The project is a "work in progress".
+This PHP Script is a home made protection for single page applications (Admin section). The project is a "work in progress".
 
 The code that I propose is open to change . I hope that many will be helping to improve the code and make it safer .
 
