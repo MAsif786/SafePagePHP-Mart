@@ -112,3 +112,8 @@ $encAccessToken = md5($stra . $accessToken . $strb);
 if($encAccessToken == $_GET['accessToken']) { /* Access Granted */  } else { /* Send ip to administrator email */ }
 ```
 > Do you know your way around this protection? Please, leave an issue! :+1:
+
+<h3>Fourth Control</h3>
+<strong>PHP Session Control</strong>
+
+<p>In a few days I will add the fourth Control about the "Sessions".<strong>
